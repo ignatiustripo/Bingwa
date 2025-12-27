@@ -1,7 +1,7 @@
 {
   "name": "ignatius-data-hubs",
   "version": "2.0.0",
-  "description": "Ignatius Data Hubs - Payments to Till 7894520",
+  "description": "Ignatius Data Hubs",
   "main": "api/mpesa.js",
   "scripts": {
     "start": "node api/mpesa.js",
