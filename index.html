@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGNATIUS' DATA HUBS | Buy Data, Minutes & SMS Instantly</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Toastify for notifications -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        :root {
+            --neon-green: #00ff00;
+            --electric-green: #00ff88;
+            --dark-green: #003300;
+            --tech-black: #0a0a0a;
+            --neon-cyan: #00ffff;
+            --neon-purple: #ff00ff;
+            --neon-yellow: #ffff00;
+            --neon-blue: #0066ff;
+            --airtel-red: #ed1c24;
+            --safaricom-green: #00a859;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #000a1a 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Custom Animations */
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes pulse-cyan {
+            0%, 100% { 
+                box-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+            }
+            50% { 
+                box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+            }
+        }
+
+        @keyframes pulse-purple {
+            0%, 100% { 
+                box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+            }
+            50% { 
+                box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 60px #ff00ff;
+            }
+        }
+
+        @keyframes pulse-yellow {
+            0%, 100% { 
+                box-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 15px #ffff00;
+            }
+            50% { 
+                box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00, 0 0 60px #ffff00;
+            }
+        }
+
+        @keyframes pulse-blue {
+            0%, 100% { 
+                box-shadow: 0 0 5px #0066ff, 0 0 10px #0066ff, 0 0 15px #0066ff;
+            }
+            50% { 
+                box-shadow: 0 0 20px #0066ff, 0 0 40px #0066ff, 0 0 60px #0066ff;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Custom Classes */
+        .text-gradient {
+            background: linear-gradient(45deg, #00ff88, #00ffff, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rainbow-glow {
+            background: linear-gradient(45deg, #00ff00, #00ffff, #ff00ff, #ffff00, #00ff00);
+            background-size: 400% 400%;
+            animation: rainbow 3s linear infinite;
+        }
+
+        .neon-border {
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            box-shadow: 
+                0 0 10px rgba(0, 255, 0, 0.3),
+                inset 0 0 10px rgba(0, 255, 0, 0.1);
+        }
+
+        .card-glow {
+            box-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.1),
+                0 0 40px rgba(0, 255, 0, 0.05),
+                inset 0 0 20px rgba(0, 255, 0, 0.05);
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+
+        .animate-pulse-cyan {
+            animation: pulse-cyan 3s infinite;
+        }
+
+        .animate-pulse-purple {
+            animation: pulse-purple 3s infinite;
+        }
+
+        .animate-pulse-yellow {
+            animation: pulse-yellow 3s infinite;
+        }
+
+        .animate-pulse-blue {
+            animation: pulse-blue 3s infinite;
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        .glow-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 255, 0, 0) 0%, rgba(0, 255, 136, 0.2) 50%, rgba(0, 255, 0, 0) 100%);
+            filter: blur(10px);
+            animation: shimmer 3s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #003300;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #00ff88, #00ff00);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #00ffff, #00ff88);
+        }
+
+        /* Selection Color */
+        ::selection {
+            background: #00ff88;
+            color: #000;
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 255, 0, 0.1);
+            border-left-color: #00ff00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background: #fff4e6;
+            color: #f90;
+        }
+        
+        .status-completed {
+            background: #e6f7ee;
+            color: #006400;
+        }
+        
+        .status-failed {
+            background: #ffe6e6;
+            color: #e00;
+        }
+
+        /* Network Badges */
+        .network-badge-saf {
+            background: linear-gradient(45deg, #00a859, #00ff88);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .network-badge-air {
+            background: linear-gradient(45deg, #ed1c24, #ff6666);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Deal Card Hover Effects */
+        .deal-card {
+            transition: all 0.3s ease;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Gradient Backgrounds */
+        .gradient-bg-green {
+            background: linear-gradient(135deg, #003300 0%, #006600 50%, #00a859 100%);
+        }
+
+        .gradient-bg-dark {
+            background: linear-gradient(135deg, #0a0a0a 0%, #003300 50%, #001a00 100%);
+        }
+
+        /* Custom Input Styles */
+        .custom-input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 255, 0, 0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Animated Background Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="relative gradient-bg-dark">
+    <!-- Animated Background Elements -->
+    <div class="floating-element w-64 h-64 -top-32 -left-32 animate-float" style="animation-delay: 0s;"></div>
+    <div class="floating-element w-48 h-48 top-1/4 right-10 animate-float" style="animation-delay: 1s;"></div>
+    <div class="floating-element w-32 h-32 bottom-1/3 left-1/4 animate-float" style="animation-delay: 2s;"></div>
+
+    <!-- Header with Network Toggle -->
+    <header class="py-4 px-6 bg-black/50 backdrop-blur-md sticky top-0 z-50 border-b border-[#00ff00]/20">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-3 mb-4 md:mb-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center">
+                    <i class="fas fa-database text-xl text-black"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gradient">IGNATIUS' DATA HUBS</h1>
+                    <p class="text-sm text-gray-400">Instant Data, Minutes & SMS</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <!-- Network Toggle -->
+                <div class="bg-black/40 rounded-full p-1 flex">
+                    <button id="networkSaf" onclick="setNetwork('safaricom')" 
+                            class="px-4 py-2 rounded-full font-bold transition-all duration-300 bg-gradient-to-r from-[#00a859] to-[#00ff88] text-white">
+                        <i class="fas fa-signal mr-2"></i>Safaricom
+                    </button>
+                    <button id="networkAir" onclick="setNetwork('airtel')" 
+                            class="px-4 py-2 rounded-full font-bold transition-all duration-300 text-gray-400 hover:text-white">
+                        <i class="fas fa-signal mr-2"></i>Airtel
+                    </button>
+                </div>
+                
+                <!-- Live Support -->
+                <a href="https://wa.me/254741234567" target="_blank" 
+                   class="flex items-center gap-2 px-4 py-2 bg-[#25D366] rounded-full font-bold hover:shadow-lg hover:shadow-[#25D366]/30 transition-all duration-300">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="hidden md:inline">Live Support</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section id="hero" class="min-h-screen relative flex items-center pt-16 px-4">
+        <div class="container mx-auto max-w-6xl relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column - Main Content -->
+                <div class="animate__animated animate__fadeInLeft">
+                    <div class="inline-flex items-center gap-3 mb-6 px-4 py-2 bg-black/40 rounded-full">
+                        <span class="w-2 h-2 bg-[#00ff00] rounded-full animate-pulse"></span>
+                        <span class="text-[#00ff88] font-bold">⚡ INSTANT ACTIVATION</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gradient leading-tight">
+                        DATA BUNDLES<br>
+                        <span class="text-4xl md:text-6xl text-white">AT YOUR</span><br>
+                        <span class="text-4xl md:text-6xl text-[#ffff00]">FINGERTIPS</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 mb-10 max-w-2xl">
+                        Get instant data, minutes & SMS deals. Pay securely via M-Pesa STK Push API 
+                        and get activated in seconds! No Till numbers, direct API integration.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="scrollToDeals()" 
+                                class="px-10 py-5 bg-gradient-to-r from-[#00ff88] via-[#00ffff] to-[#00ff00] text-black font-bold rounded-xl text-xl shadow-2xl hover:shadow-[#00ff00]/50 transition-all duration-300 animate-pulse-glow glow-effect flex items-center justify-center gap-3">
+                            <i class="fas fa-bolt text-2xl"></i>
+                            EXPLORE DEALS
+                        </button>
+                        
+                        <button onclick="scrollToPayment()" 
+                                class="px-10 py-5 bg-gradient-to-r from-[#0066ff] to-[#00ffff] text-white font-bold rounded-xl text-xl border-2 border-[#00ffff]/50 hover:shadow-[#00ffff]/30 transition-all duration-300 flex items-center justify-center gap-3">
+                            <i class="fas fa-money-bill-wave text-2xl"></i>
+                            PAY NOW
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mt-16">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-gradient mb-2">10K+</div>
+                            <div class="text-gray-400">Happy Customers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-gradient mb-2">99%</div>
+                            <div class="text-gray-400">Success Rate</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-gradient mb-2">24/7</div>
+                            <div class="text-gray-400">Support</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Animated Cards -->
+                <div class="animate__animated animate__fadeInRight">
+                    <div class="relative">
+                        <!-- Animated Card 1 -->
+                        <div class="absolute -top-10 -left-10 w-64 h-72 bg-gradient-to-br from-[#00a859]/20 to-[#00ff88]/20 rounded-3xl rotate-6 border border-[#00ff00]/20 backdrop-blur-sm animate-float">
+                            <div class="p-6">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                    <span class="network-badge-saf">SAFARICOM</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">1GB</h3>
+                                <div class="text-3xl font-bold text-gradient">KES 19</div>
+                                <div class="text-sm text-gray-400 mt-2">1 Hour • Instant Activation</div>
+                            </div>
+                        </div>
+
+                        <!-- Animated Card 2 -->
+                        <div class="absolute top-20 right-0 w-64 h-72 bg-gradient-to-br from-[#ed1c24]/20 to-[#ff6666]/20 rounded-3xl -rotate-6 border border-[#ff00ff]/20 backdrop-blur-sm animate-float" style="animation-delay: 1s;">
+                            <div class="p-6">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <i class="fas fa-hourglass-half text-2xl text-[#ffff00]"></i>
+                                    <span class="network-badge-air">AIRTEL</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">45 Mins</h3>
+                                <div class="text-3xl font-bold text-gradient">KES 23</div>
+                                <div class="text-sm text-gray-400 mt-2">3 Hours • All Networks</div>
+                            </div>
+                        </div>
+
+                        <!-- Main Card -->
+                        <div class="relative z-10 w-72 h-80 mx-auto bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 rounded-3xl border-2 border-[#00ff00]/30 backdrop-blur-sm p-8 shadow-2xl">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-[#00ff88] to-[#00ffff] rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-bolt text-2xl text-black"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">HOT DEAL</h3>
+                            </div>
+                            
+                            <div class="text-center mb-6">
+                                <h4 class="text-4xl font-bold text-gradient mb-2">2.5GB</h4>
+                                <div class="text-lg text-gray-300 mb-4">+ 50 MINS + 50 SMS</div>
+                                <div class="text-5xl font-bold text-white rainbow-glow p-3 rounded-xl">
+                                    KES 300
+                                </div>
+                            </div>
+                            
+                            <button onclick="selectDeal('2.5GB + 50 MINS + 50 SMS', 300)" 
+                                    class="w-full py-4 bg-gradient-to-r from-[#ffff00] to-orange-500 text-black font-bold rounded-xl text-lg flex items-center justify-center gap-3 hover:shadow-2xl transition-all duration-300">
+                                <i class="fas fa-cart-plus"></i>
+                                BUY NOW
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Deals Section -->
+    <section id="deals" class="py-20 relative px-4">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-[#00ff00]/10 to-[#00ffff]/10 rounded-full">
+                    <i class="fas fa-fire text-[#ffff00] text-2xl"></i>
+                    <h2 class="text-3xl md:text-5xl font-bold text-gradient">EXCLUSIVE DEALS</h2>
+                </div>
+                <p class="text-gray-400 text-xl max-w-3xl mx-auto">
+                    Choose from our wide range of data, minutes and SMS bundles. 
+                    All payments processed via secure M-Pesa API.
+                </p>
+            </div>
+
+            <!-- Network Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="filterDeals('all')" 
+                        class="category-btn active px-8 py-3 rounded-full font-bold flex items-center gap-3 rainbow-glow text-black animate__animated animate__bounceIn">
+                    <i class="fas fa-fire"></i>
+                    ALL DEALS
+                </button>
+                <button onclick="filterDeals('data')" 
+                        class="category-btn px-8 py-3 rounded-full font-bold flex items-center gap-3 neon-border text-gray-300 hover:bg-[#003300] transition-all duration-300">
+                    <i class="fas fa-database"></i>
+                    DATA BUNDLES
+                </button>
+                <button onclick="filterDeals('minutes')" 
+                        class="category-btn px-8 py-3 rounded-full font-bold flex items-center gap-3 neon-border text-gray-300 hover:bg-[#003300] transition-all duration-300">
+                    <i class="fas fa-hourglass-half"></i>
+                    MINUTES
+                </button>
+                <button onclick="filterDeals('sms')" 
+                        class="category-btn px-8 py-3 rounded-full font-bold flex items-center gap-3 neon-border text-gray-300 hover:bg-[#003300] transition-all duration-300">
+                    <i class="fas fa-comment-alt"></i>
+                    SMS
+                </button>
+            </div>
+
+            <!-- 2.1 Bingwa Data Deals -->
+            <div class="mb-16 animate__animated animate__fadeInUp">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-gradient-to-br from-[#00ffff] to-[#00ff88] rounded-full flex items-center justify-center">
+                        <i class="fas fa-crown text-xl text-black"></i>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">BINGWA DATA DEALS</h3>
+                    <span class="network-badge-saf animate-pulse">SAFARICOM</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Bingwa Deal Cards - Filled with all deals -->
+                    <div class="deal-card" data-category="data" data-network="safaricom" data-type="Bingwa">
+                        <div class="relative bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-500 animate-pulse-cyan h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                    <span class="network-badge-saf">BINGWA</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs bg-[#ffff00] text-black px-2 py-1 rounded">BUY MANY TIMES</div>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold mb-4 text-white">250MBs</h3>
+                            
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-3 mb-3">
+                                    <span class="text-4xl font-bold text-gradient">KES 20</span>
+                                    <div class="text-sm bg-[#00ff00]/10 text-[#00ff00] px-2 py-1 rounded">
+                                        24 HOURS
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-bolt text-[#ffff00]"></i>
+                                        <span class="text-gray-300">Instant Activation</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check-circle text-[#00ff00]"></i>
+                                        <span class="text-gray-300">All Networks</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button onclick="selectDeal('250MBs Bingwa', 20)" 
+                                    class="w-full py-4 bg-gradient-to-r from-[#00ffff] to-[#00ff88] text-black font-bold rounded-xl text-lg flex items-center justify-center gap-3 hover:shadow-2xl transition-all duration-300">
+                                <i class="fas fa-bolt"></i>
+                                BUY NOW
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- More Bingwa deals with same structure -->
+                    <div class="deal-card" data-category="data" data-network="safaricom" data-type="Bingwa">
+                        <div class="relative bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-500 animate-pulse-cyan h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                    <span class="network-badge-saf">BINGWA</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs bg-[#ffff00] text-black px-2 py-1 rounded">BUY MANY TIMES</div>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-white">1GB</h3>
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-3 mb-3">
+                                    <span class="text-4xl font-bold text-gradient">KES 19</span>
+                                    <div class="text-sm bg-[#00ff00]/10 text-[#00ff00] px-2 py-1 rounded">
+                                        1 HOUR
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-bolt text-[#ffff00]"></i>
+                                        <span class="text-gray-300">Instant Activation</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check-circle text-[#00ff00]"></i>
+                                        <span class="text-gray-300">Safaricom Only</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="selectDeal('1GB Bingwa', 19)" class="buy-btn">BUY NOW</button>
+                        </div>
+                    </div>
+
+                    <div class="deal-card" data-category="data" data-network="safaricom" data-type="Bingwa">
+                        <div class="relative bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-500 animate-pulse-cyan h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                    <span class="network-badge-saf">BINGWA</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs bg-[#ffff00] text-black px-2 py-1 rounded">BUY MANY TIMES</div>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-white">1.5GB</h3>
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-3 mb-3">
+                                    <span class="text-4xl font-bold text-gradient">KES 49</span>
+                                    <div class="text-sm bg-[#00ff00]/10 text-[#00ff00] px-2 py-1 rounded">
+                                        3 HOURS
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-bolt text-[#ffff00]"></i>
+                                        <span class="text-gray-300">Instant Activation</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check-circle text-[#00ff00]"></i>
+                                        <span class="text-gray-300">Safaricom Only</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="selectDeal('1.5GB Bingwa', 49)" class="buy-btn">BUY NOW</button>
+                        </div>
+                    </div>
+
+                    <div class="deal-card" data-category="data" data-network="safaricom" data-type="Bingwa">
+                        <div class="relative bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-500 animate-pulse-cyan h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                    <span class="network-badge-saf">BINGWA</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs bg-[#00ff88] text-black px-2 py-1 rounded">BUY ONCE/DAY</div>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-white">350MBs</h3>
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-3 mb-3">
+                                    <span class="text-4xl font-bold text-gradient">KES 50</span>
+                                    <div class="text-sm bg-[#00ff00]/10 text-[#00ff00] px-2 py-1 rounded">
+                                        7 DAYS
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-bolt text-[#ffff00]"></i>
+                                        <span class="text-gray-300">Instant Activation</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check-circle text-[#00ff00]"></i>
+                                        <span class="text-gray-300">Safaricom Only</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="selectDeal('350MBs Bingwa', 50)" class="buy-btn">BUY NOW</button>
+                        </div>
+                    </div>
+
+                    <div class="deal-card" data-category="data" data-network="safaricom" data-type="Bingwa">
+                        <div class="relative bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-500 animate-pulse-cyan h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                    <span class="network-badge-saf">BINGWA</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs bg-[#00ff88] text-black px-2 py-1 rounded">BUY ONCE/DAY</div>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-white">2.5GB</h3>
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-3 mb-3">
+                                    <span class="text-4xl font-bold text-gradient">KES 300</span>
+                                    <div class="text-sm bg-[#00ff00]/10 text-[#00ff00] px-2 py-1 rounded">
+                                        7 DAYS
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-bolt text-[#ffff00]"></i>
+                                        <span class="text-gray-300">Instant Activation</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check-circle text-[#00ff00]"></i>
+                                        <span class="text-gray-300">Safaricom Only</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="selectDeal('2.5GB Bingwa', 300)" class="buy-btn">BUY NOW</button>
+                        </div>
+                    </div>
+
+                    <div class="deal-card" data-category="data" data-network="safaricom" data-type="Bingwa">
+                        <div class="relative bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 backdrop-blur-sm rounded-3xl p-8 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-500 animate-pulse-cyan h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                    <span class="network-badge-saf">BINGWA</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs bg-[#00ff88] text-black px-2 py-1 rounded">BUY ONCE/DAY</div>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-white">6GB</h3>
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-3 mb-3">
+                                    <span class="text-4xl font-bold text-gradient">KES 700</span>
+                                    <div class="text-sm bg-[#00ff00]/10 text-[#00ff00] px-2 py-1 rounded">
+                                        7 DAYS
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-bolt text-[#ffff00]"></i>
+                                        <span class="text-gray-300">Instant Activation</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-check-circle text-[#00ff00]"></i>
+                                        <span class="text-gray-300">Safaricom Only</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="selectDeal('6GB Bingwa', 700)" class="buy-btn">BUY NOW</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Column Layout for Minutes, SMS & Tunukiwa -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Left Column - Minutes Deals -->
+                <div class="animate__animated animate__fadeInLeft">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#ffff00] to-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-hourglass-half text-xl text-black"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white">MINUTES DEALS</h3>
+                        <span class="network-badge-air animate-pulse">ALL NETWORKS</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- Minutes Deal Cards -->
+                        <div class="deal-card compact" data-category="minutes" data-network="all" data-type="Minutes">
+                            <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-yellow">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <i class="fas fa-hourglass-half text-2xl text-[#ffff00]"></i>
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <h3 class="text-xl font-bold text-white">45 Mins</h3>
+                                                <span class="network-badge-air">MINUTES</span>
+                                            </div>
+                                            <p class="text-gray-400 text-sm">3 Hours • All Networks</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-right">
+                                        <div class="text-2xl font-bold text-gradient">KES 23</div>
+                                        <button onclick="selectDeal('45 Mins', 23)" 
+                                                class="mt-2 px-4 py-2 bg-gradient-to-r from-[#ffff00] to-orange-500 text-black font-bold rounded-lg text-sm flex items-center gap-2 hover:shadow-lg transition-all duration-300">
+                                            <i class="fas fa-bolt"></i>
+                                            BUY
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- More minutes deals -->
+                        <div class="deal-card compact" data-category="minutes" data-network="all" data-type="Minutes">
+                            <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-yellow">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <i class="fas fa-hourglass-half text-2xl text-[#ffff00]"></i>
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <h3 class="text-xl font-bold text-white">50 Mins</h3>
+                                                <span class="network-badge-air">MINUTES</span>
+                                            </div>
+                                            <p class="text-gray-400 text-sm">Till Midnight • All Networks</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-right">
+                                        <div class="text-2xl font-bold text-gradient">KES 51</div>
+                                        <button onclick="selectDeal('50 Mins', 51)" class="buy-btn-sm">BUY</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Special Data + Minutes Combo -->
+                        <div class="deal-card compact" data-category="data" data-network="all" data-type="Special">
+                            <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-yellow">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-4">
+                                        <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <h3 class="text-xl font-bold text-white">1.25GB + 25 Mins</h3>
+                                                <span class="network-badge-saf">SPECIAL</span>
+                                            </div>
+                                            <p class="text-gray-400 text-sm">Till Midnight • Safaricom</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-right">
+                                        <div class="text-2xl font-bold text-gradient">KES 55</div>
+                                        <button onclick="selectDeal('1.25GB + 25 Mins Special', 55)" class="buy-btn-sm">BUY</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - SMS & Tunukiwa -->
+                <div class="space-y-12">
+                    <!-- SMS Deals -->
+                    <div class="animate__animated animate__fadeInRight">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#ff00ff] to-pink-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-comment-alt text-xl text-black"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-white">SMS DEALS</h3>
+                            <span class="network-badge-saf animate-pulse">SAFARICOM</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <!-- SMS Deal Cards -->
+                            <div class="deal-card compact" data-category="sms" data-network="safaricom" data-type="SMS">
+                                <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-purple">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <i class="fas fa-comment-alt text-2xl text-[#ff00ff]"></i>
+                                            <div>
+                                                <div class="flex items-center gap-2">
+                                                    <h3 class="text-xl font-bold text-white">20 SMS</h3>
+                                                    <span class="network-badge-saf">SMS</span>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">1 Day • Safaricom</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-gradient">KES 5</div>
+                                            <button onclick="selectDeal('20 SMS', 5)" class="buy-btn-sm">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- More SMS deals -->
+                            <div class="deal-card compact" data-category="sms" data-network="safaricom" data-type="SMS">
+                                <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-purple">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <i class="fas fa-comment-alt text-2xl text-[#ff00ff]"></i>
+                                            <div>
+                                                <div class="flex items-center gap-2">
+                                                    <h3 class="text-xl font-bold text-white">100 SMS</h3>
+                                                    <span class="network-badge-saf">SMS</span>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">7 Days • Safaricom</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-gradient">KES 10</div>
+                                            <button onclick="selectDeal('100 SMS', 10)" class="buy-btn-sm">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="deal-card compact" data-category="sms" data-network="safaricom" data-type="SMS">
+                                <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-purple">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <i class="fas fa-comment-alt text-2xl text-[#ff00ff]"></i>
+                                            <div>
+                                                <div class="flex items-center gap-2">
+                                                    <h3 class="text-xl font-bold text-white">300 SMS</h3>
+                                                    <span class="network-badge-saf">SMS</span>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">7 Days • Safaricom</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-gradient">KES 30</div>
+                                            <button onclick="selectDeal('300 SMS', 30)" class="buy-btn-sm">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="deal-card compact" data-category="sms" data-network="safaricom" data-type="SMS">
+                                <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-purple">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <i class="fas fa-comment-alt text-2xl text-[#ff00ff]"></i>
+                                            <div>
+                                                <div class="flex items-center gap-2">
+                                                    <h3 class="text-xl font-bold text-white">1500 SMS</h3>
+                                                    <span class="network-badge-saf">SMS</span>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">30 Days • Safaricom</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-gradient">KES 101</div>
+                                            <button onclick="selectDeal('1500 SMS', 101)" class="buy-btn-sm">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tunukiwa Deals -->
+                    <div class="animate__animated animate__fadeInRight animate__delay-1s">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 bg-gradient-to-br from-[#00ff00] to-[#00ff88] rounded-full flex items-center justify-center">
+                                <i class="fas fa-gift text-xl text-black"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-white">TUNUKIWA DEALS</h3>
+                            <span class="network-badge-saf animate-pulse">SAFARICOM</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <!-- Tunukiwa Deal Cards -->
+                            <div class="deal-card compact" data-category="data" data-network="safaricom" data-type="Tunukiwa">
+                                <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-cyan">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                            <div>
+                                                <div class="flex items-center gap-2">
+                                                    <h3 class="text-xl font-bold text-white">1GB</h3>
+                                                    <span class="network-badge-saf">TUNUKIWA</span>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">1 Hour • Safaricom</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-gradient">KES 22</div>
+                                            <button onclick="selectDeal('1GB Tunukiwa', 22)" class="buy-btn-sm">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- More Tunukiwa deals -->
+                            <div class="deal-card compact" data-category="data" data-network="safaricom" data-type="Tunukiwa">
+                                <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-cyan">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                            <div>
+                                                <div class="flex items-center gap-2">
+                                                    <h3 class="text-xl font-bold text-white">1.5GB</h3>
+                                                    <span class="network-badge-saf">TUNUKIWA</span>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">3 Hours • Safaricom</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-gradient">KES 52</div>
+                                            <button onclick="selectDeal('1.5GB Tunukiwa', 52)" class="buy-btn-sm">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="deal-card compact" data-category="data" data-network="safaricom" data-type="Tunukiwa">
+                                <div class="relative bg-gradient-to-b from-[#0a0a0a]/90 to-[#003300]/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 animate-pulse-cyan">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <i class="fas fa-database text-2xl text-[#00ffff]"></i>
+                                            <div>
+                                                <div class="flex items-center gap-2">
+                                                    <h3 class="text-xl font-bold text-white">2GB</h3>
+                                                    <span class="network-badge-saf">TUNUKIWA</span>
+                                                </div>
+                                                <p class="text-gray-400 text-sm">24 Hours • Safaricom</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-right">
+                                            <div class="text-2xl font-bold text-gradient">KES 110</div>
+                                            <button onclick="selectDeal('2GB Tunukiwa', 110)" class="buy-btn-sm">BUY</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. M-Pesa API Payment Section -->
+    <section id="payment" class="py-20 relative px-4 gradient-bg-green">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-[#00ff00]/20 to-[#00ffff]/20 rounded-full">
+                    <i class="fab fa-mpesa text-3xl text-white"></i>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white">M-PESA API PAYMENT</h2>
+                </div>
+                <p class="text-gray-200 text-xl max-w-3xl mx-auto">
+                    Secure payment via M-Pesa STK Push API. Just enter your phone number (2547 or 25401) 
+                    and get your bundle instantly!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Left Column - Steps -->
+                <div class="space-y-6 animate__animated animate__fadeInLeft">
+                    <div class="bg-[#0a0a0a]/80 backdrop-blur-sm rounded-3xl p-8 neon-border h-full">
+                        <h3 class="text-2xl font-bold mb-6 text-[#00ff88]">📱 HOW IT WORKS:</h3>
+                        <ol class="space-y-6">
+                            <li class="flex items-start gap-4 text-lg">
+                                <span class="w-10 h-10 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center text-black font-bold flex-shrink-0">1</span>
+                                <div>
+                                    <span class="text-white font-bold">Select a Deal</span>
+                                    <p class="text-gray-300 text-sm mt-1">Choose any bundle from our exclusive deals above</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 text-lg">
+                                <span class="w-10 h-10 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center text-black font-bold flex-shrink-0">2</span>
+                                <div>
+                                    <span class="text-white font-bold">Enter Phone Number</span>
+                                    <p class="text-gray-300 text-sm mt-1">Use format: 2547XXXXXXX (Safaricom) or 25401XXXXXX (Airtel)</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 text-lg">
+                                <span class="w-10 h-10 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center text-black font-bold flex-shrink-0">3</span>
+                                <div>
+                                    <span class="text-white font-bold">Click "PAY NOW"</span>
+                                    <p class="text-gray-300 text-sm mt-1">System will automatically fill amount based on selected deal</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 text-lg">
+                                <span class="w-10 h-10 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center text-black font-bold flex-shrink-0">4</span>
+                                <div>
+                                    <span class="text-white font-bold">Check Your Phone</span>
+                                    <p class="text-gray-300 text-sm mt-1">You'll receive M-Pesa STK Push on your phone</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 text-lg">
+                                <span class="w-10 h-10 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center text-black font-bold flex-shrink-0">5</span>
+                                <div>
+                                    <span class="text-white font-bold">Enter M-Pesa PIN</span>
+                                    <p class="text-gray-300 text-sm mt-1">Complete payment on your phone using your M-Pesa PIN</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4 text-lg">
+                                <span class="w-10 h-10 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center text-black font-bold flex-shrink-0">6</span>
+                                <div>
+                                    <span class="text-white font-bold">Receive Confirmation</span>
+                                    <p class="text-gray-300 text-sm mt-1">Get instant confirmation and your bundle activated</p>
+                                </div>
+                            </li>
+                        </ol>
+
+                        <!-- API Status -->
+                        <div class="mt-10 p-6 bg-gradient-to-r from-[#00ff00]/10 to-[#00ffff]/10 rounded-2xl">
+                            <div class="flex items-center gap-4">
+                                <div class="relative">
+                                    <i class="fas fa-server text-3xl text-[#00ff88]"></i>
+                                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-[#00ff00] rounded-full animate-pulse"></div>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-white">API Status: <span class="text-[#00ff00]">LIVE</span></div>
+                                    <div class="text-sm text-gray-300">M-Pesa API Integration Active • 24/7 Processing</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Payment Form -->
+                <div class="bg-gradient-to-b from-[#0a0a0a] to-[#003300] rounded-3xl p-8 border-2 border-[#00ff00]/30 shadow-2xl shadow-[#00ff00]/20 animate__animated animate__fadeInRight h-full">
+                    <div class="text-center mb-8">
+                        <div class="w-20 h-20 bg-gradient-to-br from-[#00ff88] to-[#00ffff] rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
+                            <i class="fab fa-mpesa text-3xl text-black"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gradient mb-3">COMPLETE PAYMENT</h3>
+                        <p class="text-gray-400">Enter your phone number and proceed to payment</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Selected Deal Display -->
+                        <div class="relative">
+                            <label class="block text-gray-300 mb-3 text-lg">
+                                <i class="fas fa-shopping-cart mr-2"></i>Selected Deal
+                            </label>
+                            <div id="selectedDealDisplay" class="w-full px-6 py-5 bg-black/40 border-2 border-[#00ff00]/30 rounded-xl text-white text-lg font-bold flex items-center justify-between neon-border">
+                                <span class="text-gray-300">No deal selected</span>
+                                <span class="text-2xl text-gradient">KES 0</span>
+                            </div>
+                        </div>
+
+                        <!-- Phone Number Input -->
+                        <div class="relative">
+                            <label class="block text-gray-300 mb-3 text-lg">
+                                <i class="fas fa-phone mr-2"></i>Phone Number
+                            </label>
+                            <div class="relative">
+                                <input type="tel" id="phoneNumber" 
+                                       class="w-full px-6 py-5 bg-black/40 border-2 border-[#00ff00]/30 rounded-xl text-white text-lg font-bold focus:outline-none focus:border-[#00ff88] transition-all duration-300"
+                                       placeholder="2547XXXXXXX or 25401XXXXXX"
+                                       value="2547">
+                                <div id="phoneNetwork" class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                    <span class="network-badge-saf">SAFARICOM</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 mt-2">
+                                <button onclick="setPhonePrefix('2547')" 
+                                        class="flex-1 py-2 bg-gradient-to-r from-[#00a859] to-[#00ff88] text-white rounded-lg text-sm font-bold hover:opacity-90 transition-all duration-300">
+                                    Safaricom (2547)
+                                </button>
+                                <button onclick="setPhonePrefix('25401')" 
+                                        class="flex-1 py-2 bg-gradient-to-r from-[#ed1c24] to-[#ff6666] text-white rounded-lg text-sm font-bold hover:opacity-90 transition-all duration-300">
+                                    Airtel (25401)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Amount Display (Auto-filled) -->
+                        <div class="relative">
+                            <label class="block text-gray-300 mb-3 text-lg">
+                                <i class="fas fa-money-bill-wave mr-2"></i>Amount to Pay
+                            </label>
+                            <div id="amountDisplay" class="w-full px-6 py-5 bg-gradient-to-r from-[#00ff00]/10 to-[#00ffff]/10 border-2 border-[#ffff00]/30 rounded-xl text-white text-center">
+                                <div class="text-4xl font-bold text-gradient">KES <span id="amountValue">0</span></div>
+                                <div class="text-sm text-gray-300 mt-2">Auto-filled based on selected deal</div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Button -->
+                        <button id="initiateBtn" onclick="initiatePayment()" 
+                                class="w-full py-5 bg-gradient-to-r from-[#00ff88] via-[#00ffff] to-[#00ff00] text-black font-bold rounded-xl text-xl flex items-center justify-center gap-4 hover:shadow-2xl hover:shadow-[#00ff00]/50 transition-all duration-300 animate-pulse-glow disabled:opacity-50 disabled:cursor-not-allowed disabled:animate-none mt-8">
+                            <i class="fab fa-mpesa text-2xl"></i>
+                            <span id="initiateBtnText">PAY NOW VIA M-PESA</span>
+                        </button>
+
+                        <!-- Transaction Status Section -->
+                        <div class="transaction-section hidden" id="transactionSection">
+                            <h3 class="text-xl font-bold mb-4 text-[#00ff88] mt-8">Transaction Status</h3>
+                            <div class="transaction-details bg-black/40 rounded-xl p-4 mb-4">
+                                <div class="detail-row flex justify-between mb-3">
+                                    <span class="text-gray-400">Checkout Request ID:</span>
+                                    <span id="checkoutId" class="text-white font-mono text-sm">-</span>
+                                </div>
+                                <div class="detail-row flex justify-between">
+                                    <span class="text-gray-400">Status:</span>
+                                    <span class="status-badge status-pending" id="statusBadge">Pending</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <input type="text" id="checkoutRequestId" 
+                                       class="w-full px-4 py-3 bg-black/40 border border-[#00ff00]/30 rounded-lg text-white text-sm"
+                                       placeholder="Checkout Request ID (auto-filled)">
+                                
+                                <button id="verifyBtn" onclick="verifyTransaction()" 
+                                        class="w-full py-3 bg-gradient-to-r from-[#ffff00] to-orange-500 text-black font-bold rounded-lg flex items-center justify-center gap-3 hover:shadow-lg transition-all duration-300">
+                                    <i class="fas fa-search"></i>
+                                    VERIFY TRANSACTION
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Security Badge -->
+                        <div class="mt-6 p-6 bg-gradient-to-r from-[#00ff00]/10 to-[#00ffff]/10 rounded-2xl">
+                            <div class="flex items-center gap-4">
+                                <i class="fas fa-shield-alt text-3xl text-[#00ff88] animate-pulse"></i>
+                                <div>
+                                    <div class="font-bold text-white text-lg">100% Secure Payment</div>
+                                    <div class="text-gray-300 text-sm mt-1">
+                                        • Instant Activation • 24/7 Support • M-Pesa Secured • Money Back Guarantee
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Help & Contact Section -->
+    <section id="contact" class="py-20 relative px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-[#ff00ff]/10 to-pink-500/10 rounded-full">
+                    <i class="fas fa-headset text-3xl text-[#00ffff]"></i>
+                    <h2 class="text-3xl md:text-5xl font-bold text-gradient">HELP & SUPPORT</h2>
+                </div>
+                <p class="text-gray-400 text-xl max-w-2xl mx-auto">
+                    We're here to help you 24/7. Contact us for any assistance with payments or bundles.
+                </p>
+            </div>
+
+            <!-- Contact Options Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Phone Support -->
+                <a href="tel:0119100218" 
+                   class="flex flex-col items-center p-8 bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 rounded-3xl border-2 border-[#00ff00]/20 hover:border-[#00ff00]/50 transition-all duration-300 group hover:scale-105">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center mb-6 group-hover:animate-pulse">
+                        <i class="fas fa-phone text-3xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Call Support</h3>
+                    <div class="text-3xl font-bold text-gradient mb-4">0119 100 218</div>
+                    <p class="text-gray-400 text-center">For M-Pesa or network issues. Available 24/7.</p>
+                </a>
+
+                <!-- WhatsApp Support -->
+                <a href="https://wa.me/254741234567" target="_blank"
+                   class="flex flex-col items-center p-8 bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 rounded-3xl border-2 border-[#25D366]/20 hover:border-[#25D366]/50 transition-all duration-300 group hover:scale-105">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#25D366] to-[#00ff88] rounded-full flex items-center justify-center mb-6 group-hover:animate-pulse">
+                        <i class="fab fa-whatsapp text-3xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">WhatsApp</h3>
+                    <div class="text-3xl font-bold text-gradient mb-4">0741 234 567</div>
+                    <p class="text-gray-400 text-center">Instant chat support. Quick responses guaranteed.</p>
+                </a>
+
+                <!-- Email Support -->
+                <div class="flex flex-col items-center p-8 bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 rounded-3xl border-2 border-[#00ffff]/20 hover:border-[#00ffff]/50 transition-all duration-300 group hover:scale-105">
+                    <div class="w-20 h-20 bg-gradient-to-br from-[#00ffff] to-[#0066ff] rounded-full flex items-center justify-center mb-6 group-hover:animate-pulse">
+                        <i class="fas fa-envelope text-3xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Email</h3>
+                    <div class="text-xl font-bold text-gradient mb-4">support@ignatiusdata.co.ke</div>
+                    <p class="text-gray-400 text-center">Email support for detailed inquiries.</p>
+                </div>
+            </div>
+
+            <!-- Payment Guarantee -->
+            <div class="bg-gradient-to-b from-[#0a0a0a] to-[#003300]/80 rounded-3xl p-10 border-2 border-[#00ff00]/30">
+                <h3 class="text-3xl font-bold mb-8 text-center text-gradient">✅ PAYMENT GUARANTEE</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 group hover:scale-105 transition-all duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#00ff88] to-[#00ffff] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse">
+                            <i class="fas fa-bolt text-2xl text-black"></i>
+                        </div>
+                        <h4 class="font-bold text-xl mb-3 text-white">Instant Activation</h4>
+                        <p class="text-gray-400">Get your bundle within 60 seconds after payment confirmation.</p>
+                    </div>
+                    <div class="text-center p-6 group hover:scale-105 transition-all duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#ffff00] to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse">
+                            <i class="fas fa-shield-alt text-2xl text-black"></i>
+                        </div>
+                        <h4 class="font-bold text-xl mb-3 text-white">Secure Payments</h4>
+                        <p class="text-gray-400">100% secure M-Pesa API transactions with end-to-end encryption.</p>
+                    </div>
+                    <div class="text-center p-6 group hover:scale-105 transition-all duration-300">
+                        <div class="w-16 h-16 bg-gradient-to-br from-[#ff00ff] to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse">
+                            <i class="fas fa-sync-alt text-2xl text-black"></i>
+                        </div>
+                        <h4 class="font-bold text-xl mb-3 text-white">Money Back Guarantee</h4>
+                        <p class="text-gray-400">Full refund within 30 minutes if activation fails.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Footer -->
+    <footer class="py-12 bg-[#0a0a0a] border-t border-[#00ff00]/20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Brand Info -->
+                <div>
+                    <div class="text-2xl font-bold text-gradient mb-4">IGNATIUS' DATA HUBS</div>
+                    <p class="text-gray-400 mb-6">PATA DATA HATA UKIWA NA OKOA</p>
+                    <p class="text-gray-500 text-sm">
+                        Your trusted partner for instant data, minutes and SMS bundles. 
+                        Secure M-Pesa API payments, instant activation.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-6">QUICK LINKS</h4>
+                    <div class="space-y-3">
+                        <a href="#deals" onclick="scrollToDeals()" class="flex items-center gap-3 text-gray-400 hover:text-[#00ff88] transition-colors">
+                            <i class="fas fa-chevron-right text-xs"></i>
+                            <span>Browse Deals</span>
+                        </a>
+                        <a href="#payment" onclick="scrollToPayment()" class="flex items-center gap-3 text-gray-400 hover:text-[#00ff88] transition-colors">
+                            <i class="fas fa-chevron-right text-xs"></i>
+                            <span>Make Payment</span>
+                        </a>
+                        <a href="#contact" onclick="scrollToContact()" class="flex items-center gap-3 text-gray-400 hover:text-[#00ff88] transition-colors">
+                            <i class="fas fa-chevron-right text-xs"></i>
+                            <span>Contact Support</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-6">CONTACT INFO</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-phone text-[#00ff88]"></i>
+                            <span class="text-gray-400">0119 100 218</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fab fa-whatsapp text-[#25D366]"></i>
+                            <span class="text-gray-400">0741 234 567</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-[#00ffff]"></i>
+                            <span class="text-gray-400">support@ignatiusdata.co.ke</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 border-t border-[#00ff00]/10 text-center">
+                <div class="text-sm text-gray-500">
+                    © <span id="currentYear"></span> Ignatius' Data Hubs. All rights reserved.
+                </div>
+                <div class="text-xs text-gray-600 mt-2">
+                    All payments processed via secure M-Pesa API. Prices subject to change.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-4">
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/254741234567" target="_blank"
+           class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl shadow-[#25D366]/30 hover:scale-110 transition-all duration-300 animate-bounce">
+            <i class="fab fa-whatsapp text-white text-2xl"></i>
+        </a>
+
+        <!-- Pay Now Button -->
+        <button onclick="scrollToPayment()" 
+                class="w-16 h-16 bg-gradient-to-br from-[#00ff88] via-[#00ffff] to-[#00ff00] rounded-full flex items-center justify-center shadow-2xl shadow-[#00ff00]/50 hover:scale-110 transition-all duration-300 animate-pulse-glow">
+            <i class="fas fa-bolt text-black text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopButton" onclick="scrollToTop()" 
+            class="fixed bottom-32 right-6 z-40 w-12 h-12 bg-gradient-to-br from-[#00ff88] to-[#00ff00] rounded-full flex items-center justify-center shadow-2xl shadow-[#00ff00]/50 hover:scale-110 transition-all duration-300 hidden">
+        <i class="fas fa-arrow-up text-black"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
+    <!-- Main JavaScript Code -->
+    <script>
+        // 1. Initialize variables
+        const API_BASE_URL = "https://mpesapi.giftedtech.co.ke";
+        let selectedDeal = null;
+        let selectedPrice = 0;
+        let currentNetwork = 'safaricom'; // 'safaricom' or 'airtel'
+        let currentTransaction = {
+            checkoutRequestId: null,
+            transactionId: null
+        };
+        let pollInterval = null;
+
+        // 2. Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Initialize scroll button visibility
+            initScrollButton();
+            
+            // Initialize deal filtering
+            initDealFiltering();
+            
+            // Initialize form validation
+            initFormValidation();
+            
+            // Set default phone prefix
+            setPhonePrefix('2547');
+            
+            // Initialize network toggle
+            setNetwork('safaricom');
+        });
+
+        // 3. Scroll to Top Functionality
+        function initScrollButton() {
+            window.addEventListener('scroll', function() {
+                const scrollButton = document.getElementById('scrollTopButton');
+                if (window.scrollY > 500) {
+                    scrollButton.classList.remove('hidden');
+                } else {
+                    scrollButton.classList.add('hidden');
+                }
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToDeals() {
+            document.getElementById('deals').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToPayment() {
+            document.getElementById('payment').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 4. Network Toggle Function
+        function setNetwork(network) {
+            currentNetwork = network;
+            
+            // Update UI
+            const safBtn = document.getElementById('networkSaf');
+            const airBtn = document.getElementById('networkAir');
+            
+            if (network === 'safaricom') {
+                safBtn.className = 'px-4 py-2 rounded-full font-bold transition-all duration-300 bg-gradient-to-r from-[#00a859] to-[#00ff88] text-white';
+                airBtn.className = 'px-4 py-2 rounded-full font-bold transition-all duration-300 text-gray-400 hover:text-white';
+                
+                // Update phone prefix
+                setPhonePrefix('2547');
+                
+                // Filter deals for Safaricom
+                filterDealsByNetwork('safaricom');
+            } else {
+                safBtn.className = 'px-4 py-2 rounded-full font-bold transition-all duration-300 text-gray-400 hover:text-white';
+                airBtn.className = 'px-4 py-2 rounded-full font-bold transition-all duration-300 bg-gradient-to-r from-[#ed1c24] to-[#ff6666] text-white';
+                
+                // Update phone prefix
+                setPhonePrefix('25401');
+                
+                // Filter deals for Airtel
+                filterDealsByNetwork('airtel');
+            }
+            
+            showToast(`Switched to ${network === 'safaricom' ? 'Safaricom' : 'Airtel'} network`, 'info');
+        }
+
+        function filterDealsByNetwork(network) {
+            const allDeals = document.querySelectorAll('.deal-card');
+            allDeals.forEach(deal => {
+                const dealNetwork = deal.getAttribute('data-network');
+                if (dealNetwork === network || dealNetwork === 'all') {
+                    deal.style.display = 'block';
+                    deal.classList.add('animate__animated', 'animate__fadeIn');
+                } else {
+                    deal.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. Phone Prefix Functions
+        function setPhonePrefix(prefix) {
+            const phoneInput = document.getElementById('phoneNumber');
+            let currentValue = phoneInput.value;
+            
+            // Remove any existing prefix
+            if (currentValue.startsWith('2547') || currentValue.startsWith('25401')) {
+                currentValue = '';
+            }
+            
+            // Set new prefix
+            phoneInput.value = prefix + (currentValue.replace(/\D/g, '').slice(prefix.length));
+            
+            // Update network badge
+            const networkBadge = document.getElementById('phoneNetwork');
+            if (prefix === '2547') {
+                networkBadge.innerHTML = '<span class="network-badge-saf">SAFARICOM</span>';
+                currentNetwork = 'safaricom';
+            } else {
+                networkBadge.innerHTML = '<span class="network-badge-air">AIRTEL</span>';
+                currentNetwork = 'airtel';
+            }
+            
+            // Focus on input
+            phoneInput.focus();
+            phoneInput.setSelectionRange(prefix.length, prefix.length);
+        }
+
+        // 6. Deal Selection and Filtering
+        function initDealFiltering() {
+            // Add active class to first category button
+            document.querySelectorAll('.category-btn')[0].classList.add('rainbow-glow', 'text-black');
+        }
+
+        function filterDeals(category) {
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('rainbow-glow', 'text-black');
+                btn.classList.add('neon-border', 'text-gray-300');
+            });
+            
+            event.target.classList.add('rainbow-glow', 'text-black');
+            event.target.classList.remove('neon-border', 'text-gray-300');
+
+            // Filter deals
+            const allDeals = document.querySelectorAll('.deal-card');
+            allDeals.forEach(deal => {
+                const dealCategory = deal.getAttribute('data-category');
+                const dealNetwork = deal.getAttribute('data-network');
+                
+                if ((category === 'all' || dealCategory === category) && 
+                    (dealNetwork === currentNetwork || dealNetwork === 'all')) {
+                    deal.style.display = 'block';
+                    deal.classList.add('animate__animated', 'animate__fadeIn');
+                } else {
+                    deal.style.display = 'none';
+                }
+            });
+            
+            // Show toast
+            const categoryNames = {
+                'all': 'All Deals',
+                'data': 'Data Bundles',
+                'minutes': 'Minutes',
+                'sms': 'SMS'
+            };
+            showToast(`Showing ${categoryNames[category]} for ${currentNetwork === 'safaricom' ? 'Safaricom' : 'Airtel'}`, 'info');
+        }
+
+        function selectDeal(dealName, price) {
+            selectedDeal = dealName;
+            selectedPrice = price;
+            
+            // Update payment form
+            const dealDisplay = document.getElementById('selectedDealDisplay');
+            const amountDisplay = document.getElementById('amountValue');
+            
+            dealDisplay.innerHTML = `
+                <span class="text-white">${dealName}</span>
+                <span class="text-2xl text-gradient">KES ${price}</span>
+            `;
+            amountDisplay.textContent = price;
+            
+            // Auto-fill phone prefix based on network
+            const phoneInput = document.getElementById('phoneNumber');
+            if (phoneInput.value.length < 4) {
+                setPhonePrefix(currentNetwork === 'safaricom' ? '2547' : '25401');
+            }
+            
+            // Show success message
+            showToast(`✓ Selected: ${dealName} - KES ${price}`, 'success');
+            
+            // Scroll to payment section
+            setTimeout(() => {
+                document.getElementById('payment').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+
+        // 7. Form Validation
+        function initFormValidation() {
+            const phoneInput = document.getElementById('phoneNumber');
+            
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                // Ensure it starts with 2547 or 25401
+                if (!value.startsWith('2547') && !value.startsWith('25401')) {
+                    value = currentNetwork === 'safaricom' ? '2547' : '25401';
+                }
+                
+                // Limit length
+                if (value.length > 12) {
+                    value = value.substring(0, 12);
+                }
+                
+                e.target.value = value;
+                
+                // Update network badge
+                const networkBadge = document.getElementById('phoneNetwork');
+                if (value.startsWith('2547')) {
+                    networkBadge.innerHTML = '<span class="network-badge-saf">SAFARICOM</span>';
+                    currentNetwork = 'safaricom';
+                } else if (value.startsWith('25401')) {
+                    networkBadge.innerHTML = '<span class="network-badge-air">AIRTEL</span>';
+                    currentNetwork = 'airtel';
+                }
+            });
+            
+            // Auto-select network based on input
+            phoneInput.addEventListener('change', function(e) {
+                const value = e.target.value.replace(/\D/g, '');
+                if (value.startsWith('2547')) {
+                    setNetwork('safaricom');
+                } else if (value.startsWith('25401')) {
+                    setNetwork('airtel');
+                }
+            });
+        }
+
+        function validatePhoneNumber(phone) {
+            const cleanPhone = phone.replace(/\D/g, '');
+            if (!cleanPhone) return false;
+            
+            // Check if it's a valid Safaricom (2547) or Airtel (25401) number
+            if (!/^2547\d{8}$/.test(cleanPhone) && !/^25401\d{7}$/.test(cleanPhone)) {
+                return false;
+            }
+            
+            return true;
+        }
+
+        // 8. Toast Notifications
+        function showToast(message, type = 'info', duration = 5000) {
+            Toastify({
+                text: message,
+                duration: duration,
+                gravity: "top",
+                position: "right",
+                backgroundColor: type === 'success' ? "rgba(0, 255, 0, 0.9)" : 
+                               type === 'error' ? "rgba(255, 0, 0, 0.9)" : 
+                               type === 'warning' ? "rgba(255, 165, 0, 0.9)" :
+                               "rgba(0, 0, 0, 0.9)",
+                stopOnFocus: true,
+                className: "neon-border",
+                escapeMarkup: false
+            }).showToast();
+        }
+
+        // 9. API Payment Functions
+        async function initiatePayment() {
+            const phone = document.getElementById('phoneNumber').value;
+            
+            if (!validatePhoneNumber(phone)) {
+                showToast('Please enter a valid phone number (2547XXXXXXX for Safaricom or 25401XXXXXX for Airtel)', 'error');
+                return;
+            }
+            
+            if (!selectedDeal || selectedPrice <= 0) {
+                showToast('Please select a deal first', 'error');
+                return;
+            }
+            
+            const initiateBtn = document.getElementById('initiateBtn');
+            const initiateBtnText = document.getElementById('initiateBtnText');
+            
+            initiateBtn.disabled = true;
+            initiateBtnText.innerHTML = '<div class="spinner" style="width: 20px; height: 20px;"></div> PROCESSING...';
+            
+            try {
+                showToast('Initiating M-Pesa payment request...', 'info');
+                
+                const response = await fetch(`${API_BASE_URL}/api/payNexusTech.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        phoneNumber: phone,
+                        amount: selectedPrice
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showToast('STK Push sent successfully! Check your phone for payment prompt.', 'success');
+                    
+                    currentTransaction.checkoutRequestId = data.CheckoutRequestID;
+                    
+                    // Update UI
+                    document.getElementById('checkoutId').textContent = data.CheckoutRequestID;
+                    document.getElementById('checkoutRequestId').value = data.CheckoutRequestID;
+                    document.getElementById('transactionSection').classList.remove('hidden');
+                    
+                    // Start polling for transaction status
+                    pollTransactionStatus(data.CheckoutRequestID);
+                } else {
+                    showToast('Failed to send STK Push: ' + (data.error || 'Unknown error'), 'error');
+                }
+            } catch (error) {
+                console.error('Error initiating payment:', error);
+                showToast('Error initiating payment: ' + error.message, 'error');
+            } finally {
+                initiateBtn.disabled = false;
+                initiateBtnText.textContent = 'PAY NOW VIA M-PESA';
+            }
+        }
+        
+        async function verifyTransaction() {
+            const checkoutRequestId = document.getElementById('checkoutRequestId').value;
+            
+            if (!checkoutRequestId) {
+                showToast('Please enter a Checkout Request ID', 'error');
+                return;
+            }
+            
+            const verifyBtn = document.getElementById('verifyBtn');
+            const originalText = verifyBtn.innerHTML;
+            
+            verifyBtn.disabled = true;
+            verifyBtn.innerHTML = '<div class="spinner" style="width: 20px; height: 20px;"></div> VERIFYING...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/verify-transaction.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        checkoutRequestId: checkoutRequestId
+                    })
+                });
+                
+                const data = await response.json();
+                
+                const statusBadge = document.getElementById('statusBadge');
+                statusBadge.textContent = data.status.charAt(0).toUpperCase() + data.status.slice(1);
+                statusBadge.className = 'status-badge status-' + data.status;
+                
+                if (data.success) {
+                    showToast('Transaction verified successfully! Your bundle has been activated.', 'success');
+                } else if (data.status === 'pending') {
+                    showToast('Transaction is still pending. Please wait...', 'warning');
+                } else {
+                    showToast('Transaction failed: ' + (data.data?.ResultDesc || 'Unknown reason'), 'error');
+                }
+            } catch (error) {
+                console.error('Error verifying transaction:', error);
+                showToast('Error verifying transaction: ' + error.message, 'error');
+            } finally {
+                verifyBtn.disabled = false;
+                verifyBtn.innerHTML = originalText;
+            }
+        }
+        
+        async function pollTransactionStatus(checkoutRequestId) {
+            let attempts = 0;
+            const maxAttempts = 30; // Try for 5 minutes (30 attempts * 10 seconds)
+            
+            if (pollInterval) clearInterval(pollInterval);
+            
+            pollInterval = setInterval(async () => {
+                if (attempts >= maxAttempts) {
+                    clearInterval(pollInterval);
+                    showToast('Transaction status polling timed out', 'error');
+                    return;
+                }
+                
+                attempts++;
+                
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/verify-transaction.php`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            checkoutRequestId: checkoutRequestId
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    const statusBadge = document.getElementById('statusBadge');
+                    statusBadge.textContent = data.status.charAt(0).toUpperCase() + data.status.slice(1);
+                    statusBadge.className = 'status-badge status-' + data.status;
+                    
+                    if (data.status === 'completed' || data.status === 'failed') {
+                        clearInterval(pollInterval);
+                        
+                        if (data.status === 'completed') {
+                            showToast('Payment completed successfully! Your bundle has been activated.', 'success');
+                        } else {
+                            showToast('Payment failed: ' + (data.data?.ResultDesc || 'Unknown reason'), 'error');
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error polling transaction status:', error);
+                }
+            }, 10000); // Poll every 10 seconds
+        }
+
+        // 10. Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Enter to submit form
+            if (e.key === 'Enter' && !document.getElementById('initiateBtn').disabled) {
+                initiatePayment();
+            }
+            
+            // ESC to reset
+            if (e.key === 'Escape') {
+                selectedDeal = null;
+                selectedPrice = 0;
+                document.getElementById('selectedDealDisplay').innerHTML = `
+                    <span class="text-gray-300">No deal selected</span>
+                    <span class="text-2xl text-gradient">KES 0</span>
+                `;
+                document.getElementById('amountValue').textContent = '0';
+                showToast('Selection cleared', 'info');
+            }
+        });
+
+        // Initialize with default deal
+        setTimeout(() => {
+            selectDeal('250MBs Bingwa', 20);
+        }, 1000);
+    </script>
+</body>
+</html>
